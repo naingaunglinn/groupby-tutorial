@@ -13,9 +13,9 @@ class SalesController extends Controller
     public function index()
     {
         //
-        $saleData = Sale::with('product')
+        $saleData = Sale::with('product','user')
                             ->get()
-                            ->groupBy('product.category_id')
+                            ->groupBy(['product.name','product.category_id', 'user.name'])
                             ->toArray();
         dd($saleData);
     }
